@@ -1,30 +1,30 @@
-"use client";
+import TweetsList from "@/components/tweets-list";
+import db from "@/lib/db";
+import { Prisma } from "@prisma/client";
 
-import FormButton from "@/components/button";
-import FormInput from "@/components/input";
-import login from "./log-in/action";
-import { useFormState } from "react-dom";
-import Link from "next/link";
+async function getTweets() {
+  const Tweets = await db.tweet.findMany({
+    select: {
+      id: true,
+      tweet: true,
+      description: true,
+      created_at: true,
+    },
+    take: 2,
+    orderBy: {
+      created_at: "asc",
+    },
+  });
+  return Tweets;
+}
 
-export default function Home() {
-  const [state, dispatch] = useFormState(login, null);
+export type initedTweets = Prisma.PromiseReturnType<typeof getTweets>;
+
+export default async function Home() {
+  const Tweets = await getTweets();
   return (
-    <div className="flex flex-col items-center min-h-screen py-16 px-16 gap-4">
-      <div>
-        <span>환영합니다</span>
-      </div>
-      <Link
-        className="w-full bg-[#D7D2CF] text-center p-2 rounded-full hover:bg-[#d0c3bc] duration-700"
-        href={"/create-account"}
-      >
-        시작하기
-      </Link>
-      <Link
-        className="w-full bg-[#D7D2CF] text-center p-2 rounded-full hover:bg-[#d0c3bc] duration-700"
-        href={"/log-in"}
-      >
-        로그인
-      </Link>
+    <div>
+      <TweetsList initedTweets={Tweets} />
     </div>
   );
 }

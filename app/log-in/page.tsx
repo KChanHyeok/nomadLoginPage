@@ -4,6 +4,7 @@ import FormInput from "@/components/input";
 import { useFormState } from "react-dom";
 import login from "./action";
 import FormButton from "@/components/button";
+import Link from "next/link";
 
 export default function Login() {
   const [state, dispatch] = useFormState(login, null);
@@ -87,6 +88,9 @@ export default function Login() {
           errors={state?.fieldErrors.password}
         />
         <FormButton text="Login" />
+        <Link className="w-full bg-[#D7D2CF] text-center p-2 rounded-full" href={"/create-account"}>
+          Create Account
+        </Link>
         {/* {state?.message ? (
           <div className="flex flex-row rounded-lg bg-[#00B379] w-full p-3 gap-3 text-sm items-center">
             <svg
