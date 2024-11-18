@@ -1,3 +1,4 @@
+import AddTweet from "@/components/add-tweet";
 import TweetsList from "@/components/tweets-list";
 import db from "@/lib/db";
 import { Prisma } from "@prisma/client";
@@ -24,6 +25,7 @@ export default async function Home() {
   const Tweets = await getTweets();
   return (
     <div>
+      <AddTweet />
       <TweetsList initedTweets={Tweets} />
     </div>
   );

@@ -4,7 +4,7 @@ import { initedTweets } from "@/app/page";
 import ListTweets from "./list-tweets";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
-import nextTweet from "@/app/action";
+import { nextTweet } from "@/app/action";
 
 interface TweetsListProps {
   initedTweets: initedTweets;
