@@ -5,7 +5,7 @@ import { uploadTweet } from "../app/action";
 import Input from "../components/input";
 import Button from "../components/button";
 
-export default async function AddTweet() {
+export default function AddTweet() {
   const [state, action] = useFormState(uploadTweet, null);
   return (
     <div className="p-5">
