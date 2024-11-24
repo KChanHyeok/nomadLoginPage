@@ -33,16 +33,7 @@ export default function TweetsList({ initedTweets }: TweetsListProps) {
   };
 
   return (
-    <div className="flex flex-col p-4 gap-5">
-      {tweets.map((tweet) => (
-        <ListTweets
-          key={tweet.id}
-          tweet={tweet.tweet}
-          description={tweet.description}
-          created_at={tweet.created_at}
-          id={tweet.id}
-        />
-      ))}
+    <div className="flex flex-col px-4 gap-4">
       <div className="flex justify-between">
         {page < 1 ? (
           <div></div>
@@ -62,6 +53,17 @@ export default function TweetsList({ initedTweets }: TweetsListProps) {
           />
         )}
       </div>
+      {tweets.map((tweet) => (
+        <ListTweets
+          key={tweet.id}
+          tweet={tweet.tweet}
+          description={tweet.description}
+          created_at={tweet.created_at}
+          id={tweet.id}
+          like_count={tweet._count.Like}
+          comments_count={tweet._count.comment}
+        />
+      ))}
     </div>
   );
 }

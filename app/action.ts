@@ -12,6 +12,12 @@ export async function nextTweet(page: number) {
       description: true,
       created_at: true,
       id: true,
+      _count: {
+        select: {
+          comment: true,
+          Like: true,
+        },
+      },
     },
     skip: page * 1,
     take: 2,
